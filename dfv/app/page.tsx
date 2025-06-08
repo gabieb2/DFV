@@ -48,9 +48,11 @@ export default function Page() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg">
-                <Brain className="h-6 w-6 text-white" />
-              </div>
+              <img
+            src="/logo.jpg"
+            alt="Logo Fonoaudiología"
+            className="mx-auto mb-6 w-40"
+          />
               <div>
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   LAB AI Fono
@@ -58,13 +60,9 @@ export default function Page() {
                 <p className="text-sm text-muted-foreground">Escuela de fonoaudiología UNC</p>
               </div>
             </div>
-            <Badge variant="secondary" className="bg-green-100 text-green-700 border-green-200">
-              <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
-              En línea
-            </Badge>
           </div>
         </div>
-      </header>
+        </header>
 
       <main className="container mx-auto px-4 py-8">
         {/* Hero Section */}
@@ -73,7 +71,7 @@ export default function Page() {
             Transcribe la voz y analiza el habla con IA
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Utiliza la tecnología más avanzada de reconocimiento de voz para convertir audio en datos aplicados a la fonoaudiología.
+            Utiliza la tecnología más avanzada de reconocimiento de voz para convertir datos en información aplicados a la fonoaudiología.
           </p>
         </div>
 
@@ -84,11 +82,11 @@ export default function Page() {
               <div className="mx-auto w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center mb-4">
                 <Mic className="h-6 w-6 text-white" />
               </div>
-              <CardTitle className="text-lg">Reconocimiento Preciso</CardTitle>
+              <CardTitle className="text-lg">Detección precisa</CardTitle>
             </CardHeader>
             <CardContent>
               <CardDescription className="text-center">
-                Tecnología de vanguardia que reconoce múltiples idiomas y acentos con alta precisión.
+                Analisis de los tiempos y la repetición de sonidos en el habla.
               </CardDescription>
             </CardContent>
           </Card>
@@ -98,11 +96,11 @@ export default function Page() {
               <div className="mx-auto w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mb-4">
                 <Zap className="h-6 w-6 text-white" />
               </div>
-              <CardTitle className="text-lg">Procesamiento Rápido</CardTitle>
+              <CardTitle className="text-lg">Adaptable a tus necesidades</CardTitle>
             </CardHeader>
             <CardContent>
               <CardDescription className="text-center">
-                Convierte audio a texto en tiempo real con velocidades de procesamiento ultrarrápidas.
+                Escucha, modificá y calcula automatica parametros de fluidez.
               </CardDescription>
             </CardContent>
           </Card>
@@ -112,11 +110,11 @@ export default function Page() {
               <div className="mx-auto w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center mb-4">
                 <Shield className="h-6 w-6 text-white" />
               </div>
-              <CardTitle className="text-lg">Seguro y Privado</CardTitle>
+              <CardTitle className="text-lg">Gratis y open-source</CardTitle>
             </CardHeader>
             <CardContent>
               <CardDescription className="text-center">
-                Tus datos están protegidos con los más altos estándares de seguridad y privacidad.
+                Puedes usarlo de forma gratuita y conociendo cada linea de código.
               </CardDescription>
             </CardContent>
           </Card>
@@ -143,34 +141,15 @@ export default function Page() {
             </div>
           </CardContent>
         </Card>
-
-        {/* Stats Section */}
-        <div className="grid md:grid-cols-4 gap-6 mt-12">
-          <div className="text-center">
-            <div className="text-3xl font-bold text-blue-600 mb-2">99.5%</div>
-            <div className="text-sm text-muted-foreground">Precisión</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-purple-600 mb-2">50+</div>
-            <div className="text-sm text-muted-foreground">Idiomas</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-green-600 mb-2">2.5s</div>
-            <div className="text-sm text-muted-foreground">Tiempo promedio</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-orange-600 mb-2">24/7</div>
-            <div className="text-sm text-muted-foreground">Disponibilidad</div>
-          </div>
-        </div>
       </main>
 
       {/* Footer */}
       <footer className="border-t bg-white/80 backdrop-blur-sm mt-16">
         <div className="container mx-auto px-4 py-8">
           <div className="text-center text-muted-foreground">
-            <p className="mb-2">Desarrollado con ❤️ usando Next.js y Hugging Face</p>
-            <p className="text-sm">© 2024 AI Studio. Todos los derechos reservados.</p>
+            <p className="mb-2">Desarrollado por Gabriel Beinotti</p>
+            <p className="mb-2">Escuela de Fonoaudiología - FCM - UNC </p>
+            <p className="text-sm">© 2025 Fono AI Lab. Todos los derechos reservados.</p>
           </div>
         </div>
       </footer>
