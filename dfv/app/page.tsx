@@ -1,10 +1,46 @@
 "use client"
 
+import { useEffect, useRef } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Brain, Mic, Sparkles, Zap, Globe, Shield } from "lucide-react"
+import { Brain, Mic, Zap, Globe, Shield } from "lucide-react"
 
 export default function Page() {
+  const gradioContainerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    // Evitar cargar script múltiples veces
+    if (!document.getElementById("gradio-script")) {
+      const script = document.createElement("script")
+      script.id = "gradio-script"
+      script.type = "module"
+      script.src = "https://gradio.s3-us-west-2.amazonaws.com/5.33.0/gradio.js"
+      document.body.appendChild(script)
+
+      script.onload = () => {
+        if (gradioContainerRef.current) {
+          const gradioApp = document.createElement("gradio-app")
+          gradioApp.setAttribute("src", "https://gabieb-transcriptor-de-fluidez-verbal.hf.space")
+          gradioApp.style.width = "100%"
+          gradioApp.style.minWidth = "1200px"
+          gradioApp.style.minHeight = "700px"
+          gradioApp.style.border = "none"
+          gradioContainerRef.current.appendChild(gradioApp)
+        }
+      }
+    } else {
+      if (gradioContainerRef.current && gradioContainerRef.current.childElementCount === 0) {
+        const gradioApp = document.createElement("gradio-app")
+        gradioApp.setAttribute("src", "https://gabieb-transcriptor-de-fluidez-verbal.hf.space")
+        gradioApp.style.width = "100%"
+        gradioApp.style.minWidth = "1200px"
+        gradioApp.style.minHeight = "700px"
+        gradioApp.style.border = "none"
+        gradioContainerRef.current.appendChild(gradioApp)
+      }
+    }
+  }, [])
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       {/* Header */}
@@ -86,7 +122,7 @@ export default function Page() {
           </Card>
         </div>
 
-        {/* Main App Section - Aquí va tu script embebido */}
+        {/* Main App Section - Gradio Embed */}
         <Card className="border-0 shadow-2xl bg-white/80 backdrop-blur-sm">
           <CardHeader className="text-center border-b bg-gradient-to-r from-blue-50 to-purple-50">
             <div className="flex items-center justify-center gap-2 mb-2">
@@ -98,23 +134,12 @@ export default function Page() {
             </CardDescription>
           </CardHeader>
           <CardContent className="p-0">
-            {/* AQUÍ VA TU SCRIPT EMBEBIDO DE HUGGING FACE */}
             <div
-              id="huggingface-embed"
-              className="w-full min-h-[600px] bg-gradient-to-br from-gray-50 to-blue-50 flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg m-4"
-              style={{ minHeight: "600px" }}
+              ref={gradioContainerRef}
+              className="w-full max-w-none min-h-[700px] bg-gradient-to-br from-gray-50 to-blue-50 flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg m-4"
+              style={{ minHeight: "700px" }}
             >
-              <div className="text-center space-y-4 p-8">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto">
-                  <Brain className="h-8 w-8 text-white" />
-                </div>
-                
-                <div className="bg-gray-100 p-4 rounded-lg text-left text-sm font-mono text-gray-600">
-                  <script type="module" 	src="https://gradio.s3-us-west-2.amazonaws.com/3.38.0/gradio.js" ></script> 
-                   <gradio-app src="https://openai-whisper.hf.space"></gradio-app>
-                  
-                   </div>
-              </div>
+              {/* El gradio-app se inyecta aquí */}
             </div>
           </CardContent>
         </Card>
