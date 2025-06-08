@@ -9,7 +9,6 @@ export default function Page() {
   const gradioContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // Evitar cargar script múltiples veces
     if (!document.getElementById("gradio-script")) {
       const script = document.createElement("script")
       script.id = "gradio-script"
@@ -22,7 +21,6 @@ export default function Page() {
           const gradioApp = document.createElement("gradio-app")
           gradioApp.setAttribute("src", "https://gabieb-transcriptor-de-fluidez-verbal.hf.space")
           gradioApp.style.width = "100%"
-          gradioApp.style.minWidth = "1200px"
           gradioApp.style.minHeight = "700px"
           gradioApp.style.border = "none"
           gradioContainerRef.current.appendChild(gradioApp)
@@ -33,7 +31,6 @@ export default function Page() {
         const gradioApp = document.createElement("gradio-app")
         gradioApp.setAttribute("src", "https://gabieb-transcriptor-de-fluidez-verbal.hf.space")
         gradioApp.style.width = "100%"
-        gradioApp.style.minWidth = "1200px"
         gradioApp.style.minHeight = "700px"
         gradioApp.style.border = "none"
         gradioContainerRef.current.appendChild(gradioApp)
@@ -49,10 +46,10 @@ export default function Page() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <img
-            src="/logo.jpg"
-            alt="Logo Fonoaudiología"
-            className="mx-auto mb-6 w-40"
-          />
+                src="/logo.jpg"
+                alt="Logo Fonoaudiología"
+                className="mx-auto mb-6 w-40"
+              />
               <div>
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   LAB AI Fono
@@ -62,7 +59,7 @@ export default function Page() {
             </div>
           </div>
         </div>
-        </header>
+      </header>
 
       <main className="container mx-auto px-4 py-8">
         {/* Hero Section */}
@@ -129,15 +126,19 @@ export default function Page() {
             </div>
             <CardDescription className="text-base">
               Sube tu archivo de audio o graba directamente para obtener la transcripción
+              Espera un segundo mientras se el archivo carga, luego pulsa transcribir.
+              Tendra una demora dependiendo del tamaño del archivo y la carga del servidor.
             </CardDescription>
           </CardHeader>
           <CardContent className="p-0">
             <div
-              ref={gradioContainerRef}
-              className="w-full max-w-none min-h-[700px] bg-gradient-to-br from-gray-50 to-blue-50 flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg m-4"
-              style={{ minHeight: "700px" }}
+              style={{ overflowX: "auto", width: "100%" }}
+              className="rounded-lg border-2 border-gray-300"
             >
-              {/* El gradio-app se inyecta aquí */}
+              <div
+                ref={gradioContainerRef}
+                className="w-[1200px] min-h-[700px] bg-gradient-to-br from-gray-50 to-blue-50 flex items-center justify-center m-4"
+              />
             </div>
           </CardContent>
         </Card>
